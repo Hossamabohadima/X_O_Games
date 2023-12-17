@@ -1,10 +1,4 @@
 #include "BoardGame_Classes.hpp"
-#include <iostream>
-#include <random>
-#include <vector>
-#include <iomanip>
-#include <algorithm>
-
 // Set the board
 connect_4_board::connect_4_board()
 {
