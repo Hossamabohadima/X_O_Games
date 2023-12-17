@@ -43,17 +43,6 @@ public:
     bool game_is_over();
 };
 
-class X_O_5_Board : public Board
-{
-public:
-    X_O_5_Board();
-    bool update_board(int x, int y, char mark);
-    void display_board();
-
-    bool is_winner();
-    bool is_draw();
-    bool game_is_over();
-};
 ///////////////////////////////////////////
 // This class represents a 3 x 5 board
 // used in X_O game
@@ -82,6 +71,19 @@ public:
     bool is_winner();
     bool is_draw();
     bool game_is_over();
+};
+
+class X_O_5_Board : public Board
+{
+public:
+    X_O_5_Board();
+    bool update_board(int x, int y, char mark);
+    void display_board();
+
+    bool is_winner();
+    bool is_draw();
+    bool game_is_over();
+    ~X_O_5_Board();
 };
 ///////////////////////////////////////////
 // This class represents a player who has

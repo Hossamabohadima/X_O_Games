@@ -34,7 +34,7 @@ void X_O_5_Board::display_board()
 {
     for (int i : {0, 1, 2, 3, 4})
     {
-        cout << "\n| ";
+        cout << "\n|";
         for (int j : {0, 1, 2, 3, 4})
         {
             if (board[i][j] == ' ')
@@ -44,7 +44,7 @@ void X_O_5_Board::display_board()
             }
             else
             {
-                cout << setw(2) << board[i][j] << " |";
+                cout << setw(3) << board[i][j] << "  |";
             }
         }
         cout << "\n-----------------------------";
@@ -62,64 +62,77 @@ bool X_O_5_Board::is_winner()
     {
         return false;
     }
-
     int counterX = 0;
     int counterO = 0;
-    char row_win[5], col_win[5], diag_win[2];
-    for (int i : {0, 1, 2, 3, 4})
+
+    // Check rows for winning sequences
+    for (int i = 0; i < n_rows; ++i)
     {
-        row_win[i] = board[i][0] & board[i][1] & board[i][2] & board[i][3] & board[i][4];
-        col_win[i] = board[0][i] & board[1][i] & board[2][i] & board[3][i] & board[4][i];
-    }
-    diag_win[0] = board[0][0] & board[1][1] & board[2][2] & board[3][3] & board[4][4];
-    diag_win[1] = board[0][4] & board[1][3] & board[2][2] & board[3][1] & board[4][0];
-    for (int i : {0, 1, 2, 3, 4})
-    {
-        if (row_win[i] == 'X')
+        for (int j = 0; j <= n_cols - 3; ++j)
         {
-            counterX++;
-        }
-        else if (row_win[i] == 'O')
-        {
-            counterO++;
-        }
-        if (col_win[i] == 'X')
-        {
-            counterX++;
-        }
-        else if (col_win[i] == 'O')
-        {
-            counterO++;
+            if (board[i][j] == 'X' && board[i][j + 1] == 'X' && board[i][j + 2] == 'X')
+            {
+                counterX++; // Increment counter for 'X' for each winning sequence found in a row
+            }
+            else if (board[i][j] == 'O' && board[i][j + 1] == 'O' && board[i][j + 2] == 'O')
+            {
+                counterO++; // Increment counter for 'O' for each winning sequence found in a row
+            }
         }
     }
-    if (diag_win[0] == 'X')
+
+    // Check columns for winning sequences
+    for (int i = 0; i < n_cols; ++i)
     {
-        counterX++;
+        for (int j = 0; j <= n_rows - 3; ++j)
+        {
+            if (board[j][i] == 'X' && board[j + 1][i] == 'X' && board[j + 2][i] == 'X')
+            {
+                counterX++; // Increment counter for 'X' for each winning sequence found in a column
+            }
+            else if (board[j][i] == 'O' && board[j + 1][i] == 'O' && board[j + 2][i] == 'O')
+            {
+                counterO++; // Increment counter for 'O' for each winning sequence found in a column
+            }
+        }
     }
-    else if (diag_win[0] == 'O')
+
+    // Check diagonals for winning sequences
+    for (int i = 0; i <= n_rows - 3; ++i)
     {
-        counterO++;
+        for (int j = 0; j <= n_cols - 3; ++j)
+        {
+            if ((board[i][j] == 'X' && board[i + 1][j + 1] == 'X' && board[i + 2][j + 2] == 'X') ||
+                (board[i][j + 2] == 'X' && board[i + 1][j + 1] == 'X' && board[i + 2][j] == 'X'))
+            {
+                counterX++; // Increment counter for 'X' for each winning sequence found in a diagonal
+            }
+            else if ((board[i][j] == 'O' && board[i + 1][j + 1] == 'O' && board[i + 2][j + 2] == 'O') ||
+                     (board[i][j + 2] == 'O' && board[i + 1][j + 1] == 'O' && board[i + 2][j] == 'O'))
+            {
+                counterO++; // Increment counter for 'O' for each winning sequence found in a diagonal
+            }
+        }
     }
-    if (diag_win[1] == 'X')
-    {
-        counterX++;
-    }
-    else if (diag_win[1] == 'O')
-    {
-        counterO++;
-    }
+
     if (counterX > counterO)
     {
+        cout << counterX << endl;
+        cout << counterO << endl;
         cout << "X is the winner" << endl;
         return true;
     }
     else if (counterO > counterX)
     {
+        cout << counterX << endl;
+        cout << counterO << endl;
         cout << "O is the winner" << endl;
         return true;
     }
     else
     {
+        cout << counterX << endl;
+        cout << counterO << endl;
         cout << "It's a draw" << endl;
         return false;
     }
@@ -134,4 +147,9 @@ bool X_O_5_Board::is_draw()
 bool X_O_5_Board::game_is_over()
 {
     return n_moves >= 25;
+}
+
+X_O_5_Board::~X_O_5_Board()
+{
+    delete[] board;
 }
