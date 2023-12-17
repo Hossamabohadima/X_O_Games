@@ -52,7 +52,7 @@ int main()
             // Player pointer points to child
             players[1] = new RandomPlayer('o', 5);
 
-        GameManager gameMange(new Pyramed_X_O_Board, players);
+        GameManager gameMange(new X_O_5_Board, players);
         gameMange.run();
         break;
     }
