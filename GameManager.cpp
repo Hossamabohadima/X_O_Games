@@ -1,14 +1,10 @@
-// Class definition for XO_GameManager class
-// Author:  Mohammad El-Ramly
-// Date:    10/10/2022
-// Version: 1
-
 #include <iostream>
 #include "BoardGame_Classes.hpp"
 #include "Player.cpp"
 #include "RandomPlayer.cpp"
 #include "Pyramed_X_O_Board.cpp"
 #include "connect_four_Board.cpp"
+#include "X_O_5_Board.cpp"
 using namespace std;
 
 GameManager::GameManager(Board *bPtr, Player *playerPtr[2])
