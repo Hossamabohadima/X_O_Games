@@ -1,3 +1,8 @@
+// Author 1: Mohamed Sayed Kaseb
+// Author 2: Mohamed Essam El-Din
+// Author 3: Hossam El-Din Abo Hadima
+// Creation date: 15/12/2023
+
 #include "GameManager.cpp"
 
 int main()
