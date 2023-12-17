@@ -52,10 +52,6 @@ void X_O_5_Board::display_board()
     cout << endl;
 }
 
-// now we make function that have counter for each symbol and the counter checks if there is 3 X or O in a row
-// and checks if there is 3 X or O in a column or in a diagonal and if there is it increments the counter for the symbol
-// and when the game is over it checks which symbol has the highest counter and returns the winner
-
 bool X_O_5_Board::is_winner()
 {
     if (n_moves != 25)
